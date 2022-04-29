@@ -15,6 +15,8 @@
 
 import sys
 # input = sys.stdin.readline()
+# 만약 재귀를 사용해서 풀어야 하는 문제라면, 위 코드를 상단에 쓰는 것은 선택이 아닌 필수이다. 파이썬의 기본 재귀 깊이 제한은 1000으로 매우 얕은 편이다. -> 스택오버플로 에러남 재귀한도를 늘려줌
+sys.setrecursionlimit(10000)
 
 graph = []
 blank = []
@@ -22,7 +24,7 @@ blank = []
 n = 9
 
 for _ in range(n):
-  graph.append(list(map(int, input().split())))
+  graph.append(list(map(int, sys.stdin.readline().rstrip().split())))
 
 #빈칸인 좌표들 리스트에 튜플 형태로 추가
 for i in range(n):
@@ -63,8 +65,12 @@ def dfs(idx):
   #빈칸을 모두 체크했을때 결과 출력하고 프로그램 종료
   if idx == len(blank):
     for i in range(n):
+      # 그냥 graph[i] 출력하면 이렇게 나옴  [1, 3, 5, 4, 6, 9, 2, 7, 8]
+      # astrics붙이고 출력하면 *graph: 한 라인에 띄어쓰기로 정제해서 출력해줌  7 8 2 1 3 5 6 4 9
       print(*graph[i])
-    #프로그램 종료
+
+    #프로그램 종료!!!
+    #exit을 안하면 다른 경우의 수도 찾을수있어서 오답처리될수있음
     exit(0)
   
   #빈칸인 좌표에 들어갈 수 있는 값 1~9 루프를 돌면서
@@ -84,6 +90,9 @@ def dfs(idx):
 
       graph[x][y] = i 
       #다음 빈칸 값으로 재귀 호출 -> 여기서 계속 깊이있게 들어가다가 빈칸을 모두 체크하게 되면 프로그램 종료
+      #여기가 백트랙킹!!!!!!
+      #완전탐색 느낌이라 느린 파이썬으로 구현하면 잘 안맞음..
+      #DFS를 사용하여 만약 조건에 맞지 않으면 그 즉시 중단하고 이전으로 돌아가여 다시 확인하는 것을 반복하면서 원하는 조건을 찾는 알고리즘 입니다.
       dfs(idx + 1)
       #정답이 없을경우에 대비해 초기화 (정답 있으면 위에서 프로그램 exit()시키기때문에 여기까지 안온다.)
       graph[x][y] = 0
