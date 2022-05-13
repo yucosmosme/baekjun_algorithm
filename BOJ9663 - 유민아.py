@@ -52,7 +52,7 @@ def dfs(x):
     for i in range(n):
       print('---------',i,'열')
 
-      # 먼저 퀸을 (x,i)위치에 놓는다.
+      # 먼저 퀸을 (x,i) 위치에 놓는다.
       row[x] = i
       # print('i:', i)
       # print('row[x]:',row[x])
