@@ -26,7 +26,7 @@ import queue
 m,n = map(int, input().split())
 
 #토마토 상태 받아옴
-table = [list(map(int, input().split())) for _ in range(n)]
+table = [list(map(int, input().split()) for _ in range(n))]
 # print('table',table)
 
 queue = deque([])
