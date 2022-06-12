@@ -86,7 +86,7 @@ def dfs(board, cnt):
   
   #동서남북으로 움직임
   for i in range(4):
-    tmp_board = move(deepcopy(board), i)
+    tmp_board = move(deepcopy(board), i) #깊은복사. 
     dfs(tmp_board, cnt + 1) #재귀호출
 
 ans = 0
