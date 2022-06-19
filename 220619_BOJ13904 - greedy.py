@@ -12,7 +12,7 @@ for _ in range(n):
 
 # 점수가 큰 순서대로 정렬
 graph.sort(key=lambda x:x[1], reverse=True) 
-print(graph)
+# print(graph)
 
 score = 0
 days = [0]*1001
@@ -26,3 +26,5 @@ for i in graph:
       break
 
 print(score)
+
+
